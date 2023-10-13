@@ -1,36 +1,34 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from locators.main_page_locators import MainPageLocators
+from pages.base_page import BaselPage
 
 
-class MainPage:
-
-    def __init__(self, driver):
-        self.driver = driver
-
-    def get_main_page(self):
-        self.driver.get("https://qa-scooter.praktikum-services.ru/")
-
-    def scroll_order_button(self, button):
-        element = self.driver.find_element(*button)
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+class MainPage(BaselPage):
 
     @allure.step('Нажимаем кнопку «Заказать»')
     def click_order_button(self, button):
-        WebDriverWait(self.driver, 3).until(
-            expected_conditions.element_to_be_clickable(button)).click()
+        self.scroll(button)
+        self.wait_for_element_to_be_clickable(button)
+        self.click_on_element(button)
 
+    @allure.step('Проверяем, что открылась главная страница "Самоката"')
     def check_switch_on_main_page(self):
-        current_url = self.driver.current_url
+        current_url = self.get_current_url()
         assert current_url == "https://qa-scooter.praktikum-services.ru/"
 
     @allure.step('Нажимаем на логотип "Яндекс"')
     def click_yandex_logo(self):
-        WebDriverWait(self.driver, 3).until(
-            expected_conditions.element_to_be_clickable(MainPageLocators.YANDEX_LOGO)).click()
+        self.wait_for_element_to_be_clickable(MainPageLocators.YANDEX_LOGO)
+        self.click_on_element(MainPageLocators.YANDEX_LOGO)
 
-    def check_switch_on_yandex(self):
-        current_url = self.driver.current_url
-        print(current_url)
-        assert current_url == "https://dzen.ru/?yredirect=true", "Главная страница Яндекса не открылась"
+    @allure.step('Нажимаем на вопрос')
+    def click_question_button(self, button):
+        self.scroll(button)
+        self.wait_for_element_to_be_clickable(button)
+        self.click_on_element(button)
+
+    @allure.step('Проверяем, что открылся соответствующий текст ответа')
+    def check_answer_text(self, answer, expected_text):
+        self.wait_for_visibility_of_element(answer)
+        actually_text = self.get_actually_text(answer)
+        assert actually_text == expected_text

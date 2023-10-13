@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(scope='class')
+@pytest.fixture
 def driver():
     browser = webdriver.Firefox()
     browser.get("https://qa-scooter.praktikum-services.ru/")
