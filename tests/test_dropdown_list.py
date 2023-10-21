@@ -5,6 +5,7 @@ from locators.main_page_locators import MainPageLocators
 from data.main_page_constants import AnswerConstants
 
 
+@allure.feature('Выпадающий список вопросов')
 class TestQuestionPage:
 
     @allure.title('Проверка открытия текста ответа')

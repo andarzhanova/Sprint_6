@@ -7,6 +7,7 @@ from locators.order_page_locators import OrderPageLocators
 from data.order_page_constants import OrderConstants
 
 
+@allure.feature('Заказ самоката')
 class TestOrderPage:
 
     @allure.title('Проверка оформления заказа')

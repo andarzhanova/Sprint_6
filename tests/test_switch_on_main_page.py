@@ -4,6 +4,7 @@ from locators.main_page_locators import MainPageLocators
 from pages.order_page import OrderPage
 
 
+@allure.feature('Переход на главную страницу "Самоката"')
 class TestOrderPage:
     @allure.title('Проверка перехода на главную страницу "Самоката"')
     @allure.description('Нажимаем на логотип "Самокат" и проверяем, что произошёл переход главную страницу "Самоката"')

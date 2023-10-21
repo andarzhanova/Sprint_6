@@ -21,6 +21,10 @@ class MainPage(BaselPage):
         self.wait_for_element_to_be_clickable(MainPageLocators.YANDEX_LOGO)
         self.click_on_element(MainPageLocators.YANDEX_LOGO)
 
+    @allure.step('Переходим на главную страницу "Дзен"')
+    def switch_on_yandex(self):
+        self.go_to_site('https://dzen.ru/?yredirect=true')
+
     @allure.step('Нажимаем на вопрос')
     def click_question_button(self, button):
         self.scroll(button)
