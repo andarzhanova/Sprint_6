@@ -33,5 +33,5 @@ class BaselPage:
         actually_text = self.driver.find_element(*locator).text
         return actually_text
 
-    def go_to_site(self, url):
-        return self.driver.get(url)
+    def switch_to_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])
