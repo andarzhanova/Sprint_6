@@ -12,4 +12,5 @@ class TestOrderPage:
         main_page.click_yandex_logo()
         main_page.switch_on_yandex()
         dzen_page = DzenPage(driver)
+        dzen_page.wait_for_load_dzen()
         dzen_page.check_switch_on_yandex()

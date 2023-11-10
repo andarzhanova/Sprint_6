@@ -23,7 +23,7 @@ class MainPage(BaselPage):
 
     @allure.step('Переходим на главную страницу "Дзен"')
     def switch_on_yandex(self):
-        self.go_to_site('https://dzen.ru/?yredirect=true')
+        self.switch_to_window()
 
     @allure.step('Нажимаем на вопрос')
     def click_question_button(self, button):
